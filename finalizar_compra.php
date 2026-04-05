@@ -1,23 +1,64 @@
 <?php
-session_start();
+require_once __DIR__ . '/includes/config.php';
 
-//Se o carrinho estiver vazio, redireciona para o catálogo
-if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) {
-    header('Location: index.php');
-    exit;
-}
+$mensagem_sucesso = null;
 
+// Só finaliza a compra se o formulário for enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Aqui vamos processa os dados do formulário, para que sejam guardados em base de dados
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit;
+    }
 
+    if (empty($_SESSION['carrinho'])) {
+        header("Location: carrinho.php");
+        exit;
+    }
 
-    //para já, limpamos o carrinho e mostramos uma mensagem
-    unset($_SESSION['carrinho']); //esvazia o carrinho
-    $mensagem_sucesso = "Obrigada pela sua compra! O seu pedido foi registado.";
+    $user_id = $_SESSION['user_id'];
+    $carrinho = $_SESSION['carrinho'];
+
+    $total = 0;
+
+    foreach ($carrinho as $produto_id => $quantidade) {
+        $stmt = $pdo->prepare("SELECT preco FROM produtos WHERE id = ?");
+        $stmt->execute([$produto_id]);
+        $produto = $stmt->fetch();
+
+        $total += $produto['preco'] * $quantidade;
+    }
+
+    $pdo->beginTransaction();
+
+    $stmt = $pdo->prepare("INSERT INTO pedidos (user_id, total, status) VALUES (?, ?, 'pendente')");
+    $stmt->execute([$user_id, $total]);
+
+    $pedido_id = $pdo->lastInsertId();
+
+    foreach ($carrinho as $produto_id => $quantidade) {
+
+        $stmt = $pdo->prepare("SELECT preco FROM produtos WHERE id = ?");
+        $stmt->execute([$produto_id]);
+        $produto = $stmt->fetch();
+
+        $stmt = $pdo->prepare("INSERT INTO orders_itens (pedido_id, produto_id, quantidade, preco_uni)
+                               VALUES (?, ?, ?, ?)");
+        $stmt->execute([
+            $pedido_id,
+            $produto_id,
+            $quantidade,
+            $produto['preco']
+        ]);
+    }
+
+    $pdo->commit();
+
+    unset($_SESSION['carrinho']);
+
+    $mensagem_sucesso = "Compra finalizada com sucesso!";
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -33,38 +74,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container mt-5">
         <h2>Finalizar compra</h2>
 
-        <?php if (isset($mensagem_sucesso)): ?>
+        <?php if ($mensagem_sucesso): ?>
 
-            <div class="alert alert-success">
-                <?php echo $mensagem_sucesso; ?>
-            </div>
-            <a href="index.php" class="btn btn-primary">Voltar ao catálogo</a>
+        <div class="alert alert-success">
+            <?php echo $mensagem_sucesso; ?>
+        </div>
+        <a href="loja.php" class="btn btn-primary">Voltar ao catálogo</a>
 
         <?php else: ?>
 
-            <form method="post" action="">
-                <div class="mb-3">
-                    <label for="nome" class="form-label">Nome Completo</label>
-                    <input type="text" class="form-control" id="nome" name="nome" required />
-                </div>
-                <div class="mb-3">
-                    <label for="endereco" class="form-label">Endereço de Entrega</label>
-                    <textarea class="form-control" id="endereco" name="endereco" rows="3" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required />
-                </div>
+        <form method="post" action="">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="nome" name="nome" required />
+            </div>
+            <div class="mb-3">
+                <label for="endereco" class="form-label">Endereço de Entrega</label>
+                <textarea class="form-control" id="endereco" name="endereco" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required />
+            </div>
 
-                <button type="submit" class="btn btn-success">Confirmar compra</button>
+            <button type="submit" class="btn btn-success">Confirmar compra</button>
 
-            </form>
-
+        </form>
 
         <?php endif; ?>
     </div>
-
-
 
 </body>
 

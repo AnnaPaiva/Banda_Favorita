@@ -1,0 +1,10 @@
+{
+  "turne": [
+    { "mes": "Julho", "status": "Vendido" },
+    { "mes": "Agosto", "status": "Vendido" },
+    { "mes": "Setembro", "status": "Disponível" },
+    { "mes": "Outubro", "status": "Disponível" },
+    { "mes": "Novembro", "status": "Disponível" },
+    { "mes": "Dezembro", "status": "Disponível" }
+  ]
+}

@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #161515;
+  color: #f9f2f2;
+  font-family: "Amatic SC", sans-serif;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  padding: 0;
+  background-color: #161515;
+  color: #f9f2f2;
+  font-family: "Amatic SC", sans-serif;
+}
+.nav-link {
+  color: #f9f2f2;
+  font-size: 24px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+h3,
+p {
+  text-align: center;
+  color: #f9f2f2;
+}
+.mySlides {
+  display: none;
+}
+
+#band {
+  padding: 80px 0;
+  background-color: #f9f2f2;
+  color: #272626;
+}
+@media screen and (max-width: 800px) {
+  #band,
+  #tour,
+  .border {
+    width: 100%;
+  }
+}
+
+#lista-turne {
+  padding-left: 0;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  list-style-type: none;
+  color: #eaf20d;
+  background-color: #333030;
+}
+.border {
+  background-color: #fff;
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 30px;
+  width: 100%;
+  margin: auto;
+  color: #1a1919;
+}
+.black {
+  margin: 100px 40px;
+  width: 100%;
+}
+.card {
+  width: 435px;
+  height: 480px;
+  margin-top: 25px;
+  padding: 10px;
+}
+#card-city1,
+#card-city2,
+#card-city3 {
+  width: 275px;
+  height: 240px;
+}
+#card-text1,
+#card-text2,
+#card-text3 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+}
+#contact {
+  font-size: 28px;
+}
+.btn {
+  text-align: center;
+  font-size: 20px;
+  background-color: #333030;
+}
+
+footer,
+i,
+a {
+  color: #f9f2f2;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 2.5vh;
+}
+
+.is-valid {
+  border-color: #198754;
+}
+.is-invalid {
+  border-color: #dc3545;
+}
+
+#galeria {
+  display: flex;
+  flex-wrap: wrap; /* quebra linha quando faltar espaço */
+  gap: 15px; /* espaço entre as imagens */
+  justify-content: center; /* centraliza tudo */
+}
+
+#galeria a {
+  flex: 0 1 150px; /* largura base de cada item */
+  display: block;
+}
+
+#galeria img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px; /* opcional, bordas arredondadas */
+  display: block;
+}
+#galeria a:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
