@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 $host = "localhost";
-$dbname = "banda_favorita";
+$dbname = "bandafavorita";
 $username = "root";
 $senha = "";
 
