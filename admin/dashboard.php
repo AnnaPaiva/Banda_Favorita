@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../includes/config.php';
-
+include 'menu.php';
 
 
 if (!isset($_SESSION['user_id']) || $_SESSION['tipo'] !== 'admin') {
@@ -160,6 +160,7 @@ $totalAdmins = $pdo->query(
 
     </div>
 
+    </div> <!-- fecha .content -->
 </body>
 
 </html>

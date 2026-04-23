@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/../includes/config.php';
+include 'menu.php'; // menu comum a todas as páginas admin
 // ligação à BD
 
 // Protege a página: só admin
@@ -179,6 +180,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    </div> <!-- fecha .content -->
 </body>
 
 </html>

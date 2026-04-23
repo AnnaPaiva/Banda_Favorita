@@ -49,71 +49,71 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-    body {
-        background-color: #f8f9fa;
-    }
+        body {
+            background-color: #f8f9fa;
+        }
 
-    .container {
-        margin: 50px auto;
-        padding: 30px;
-        background-color: #333030;
-        border-radius: 10px;
-        width: 95%;
-        max-width: 600px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-        color: #e8e2e2;
-    }
-
-    h2 {
-        text-align: center;
-        font-size: 40px;
-        margin-bottom: 30px;
-        color: #e8e2e2;
-    }
-
-    .form-control {
-        background-color: #555;
-        border: none;
-        color: #e8e2e2;
-    }
-
-    .form-control:focus {
-        background-color: #555;
-        color: #e8e2e2;
-        box-shadow: none;
-    }
-
-    .btn-primary {
-        background-color: #eaf20d;
-        border: none;
-        color: #333030;
-    }
-
-    .btn-primary:hover {
-        background-color: #d4c80e;
-        color: #333030;
-    }
-
-    .btn-secondary {
-        background-color: #555;
-        border: none;
-        color: #e8e2e2;
-    }
-
-    .btn-secondary:hover {
-        background-color: #333030;
-        color: #e8e2e2;
-    }
-
-    @media (max-width: 576px) {
         .container {
-            padding: 20px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #333030;
+            border-radius: 10px;
+            width: 95%;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            color: #e8e2e2;
         }
 
         h2 {
-            font-size: 30px;
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 30px;
+            color: #e8e2e2;
         }
-    }
+
+        .form-control {
+            background-color: #555;
+            border: none;
+            color: #e8e2e2;
+        }
+
+        .form-control:focus {
+            background-color: #555;
+            color: #e8e2e2;
+            box-shadow: none;
+        }
+
+        .btn-primary {
+            background-color: #eaf20d;
+            border: none;
+            color: #333030;
+        }
+
+        .btn-primary:hover {
+            background-color: #d4c80e;
+            color: #333030;
+        }
+
+        .btn-secondary {
+            background-color: #555;
+            border: none;
+            color: #e8e2e2;
+        }
+
+        .btn-secondary:hover {
+            background-color: #333030;
+            color: #e8e2e2;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 30px;
+            }
+        }
     </style>
 </head>
 
